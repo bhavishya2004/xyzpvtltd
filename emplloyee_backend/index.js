@@ -26,8 +26,8 @@ app.post('/addEmployee', async function (req, res) {
     let {pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = req.body;
     amountout = buyingprice * bought;
     stock = bought -sold;
-    unitprofit = sellingprice * sold;
-    profit = amountout - unitprofit;
+    unitprofit = sellingprice -buyingprice;
+    profit = sold * unitprofit;
 
     // console.log(req.body);
     try {
@@ -98,5 +98,77 @@ app.post('/addEmployee', async function (req, res) {
   console.log(error)   
  }
    })
+
+
+
+
+   app.post('/addEmployee1', async function (req, res) {
+   
+    const {e_name,e_monthly_salary,e_yearly_salary} = req.body
+    try {
+     const result =await db.query("INSERT INTO employee (e_name,e_monthly_salary,e_yearly_salary) VALUES ($1,$2,$3)",[e_name,e_monthly_salary,e_yearly_salary]);
+     //console.log(result.rows)
+     res.json("success")
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.get('/employeeData1', async function (req, res) {
+   
+    try {
+     const result =await db.query("SELECT * FROM employee");
+     //console.log(result.rows)
+     res.json(result.rows)
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.post('/delete1', async function (req, res) {
+
+    console.log(req.body)
+   
+    try {
+     const result =await db.query("DELETE FROM employee WHERE id = $1",[req.body.id])
+     //console.log(result.rows)
+     res.json("success")
+
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.post('/getUpdateData1', async function (req, res) {
+ 
+    console.log(req.body)
+   
+    try {
+     const result =await db.query("SELECT * FROM employee WHERE id = $1",[req.body.id])
+    //  console.log(result.rows[0])
+     res.json(result.rows[0])
+     
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+
+   app.post('/Update1', async function (req, res) {
+ 
+    console.log(req.body)
+   const {id,e_name,e_monthly_salary,e_yearly_salary} = req.body
+    try {
+     const result =await db.query("UPDATE employee SET e_name=$2, e_monthly_salary=$3, e_yearly_salary=$4  WHERE id = $1",
+     [id,e_name,e_monthly_salary,e_yearly_salary])
+    //  console.log(result.rows[0])
+    //  console.log(result.rows)
+     res.json("success")
+     
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
 
 app.listen(3001)

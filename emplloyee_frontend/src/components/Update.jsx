@@ -43,7 +43,7 @@ const Update = () => {
             axios.post("http://localhost:3001/Update", {id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit})
                 .then((response) => {
                     console.log(response);
-                    navigate("/")
+                    navigate("/Turnoverreport")
                 })
                 .catch((err) => { console.log(err) })
 

@@ -7,10 +7,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 .employeeList{
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .employeeData{
@@ -22,8 +20,9 @@
 
 .employeeData div{
   border:  1px solid;
-  width: 100px;
+  width: 130px;
   text-align: center;
+  
  }
 
  .employeeData button{
@@ -34,7 +33,27 @@
 
  }
 
- /* .s1{
+ .he{
+  font-size: 20px;
+ }
+
+ body{
+  background-color: blueviolet;
+ }
+
+ button{
+  margin-left: 200px;
+ }
+
+ ul img{
+  width: 100px;
+ }
+
+ .bg{
+background-color: rgb(11, 219, 11);
+ }
+
+  /* .s1{
   margin-left:420px ;
   background-color: aqua;
   border: 2px solid;
@@ -47,7 +66,3 @@ background-color: aqua;
   border: 2px solid;
   
  }   */
-
- .he{
-  font-size: 20px;
- }

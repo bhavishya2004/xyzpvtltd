@@ -24,7 +24,7 @@ axios
 .then(
   (response) => {
    console.log(response.data);
-   navigate('/')
+   navigate('/Turnoverreport')
     }
   )
 .catch(
@@ -46,8 +46,6 @@ axios
             <input type='number' placeholder='bought' name='bought' value={bought} onChange={(e)=>{setBought(e.target.value)}} required />
             <input type='number' placeholder='sellingprice' name='sellingprice' value={sellingprice} onChange={(e)=>{setSellingPrice(e.target.value)}} required />
             <input type='number' placeholder='sold' name='sold' value={sold} onChange={(e)=>{setSold(e.target.value)}} required />
-           
-           
             <input type='submit' value="submit" />
         </form>
     </div>
