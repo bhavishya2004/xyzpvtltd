@@ -6,6 +6,18 @@ import axios from "axios";
 const Employee = () => {
   const navigate = useNavigate();
 
+  function updateAllData(){
+    axios
+    .get("http://localhost:3001/updateAllData")
+    .then((response) => {
+      console.log(response);
+      alert(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
 
   return (
     <>
@@ -55,6 +67,9 @@ const Employee = () => {
         >
           EmployeeCard
         </button>
+
+
+        <button onClick={updateAllData}>Update Records</button>
 
         <img className="imgE" src="https://tse4.mm.bing.net/th?id=OIP.6IoR9dyxrCKArBErYA6LRAHaEv&pid=Api&P=0&h=180" width="1700" height="800" alt=""/>
       

@@ -20,14 +20,33 @@ app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
+app.get('/updateAllData', async function (req, res) {
+  try {
+   const result = await db.query("SELECT * FROM turnover");
+   result.rows.forEach( async row => {
+      var {id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = row;
+      amountout = calculateAmountOut(buyingprice, bought);
+      stock = calculateStock(bought, sold);
+      unitprofit = calculateUnitProfit(sellingprice, sold);
+      profit = calculateTotalProfit( amountout, unitprofit);
+      const result1 = await db.query("UPDATE turnover SET pnumber=$2,pname=$3,buyingprice=$4,bought=$5,amountout=$6,sellingprice=$7,sold=$8,stock=$9,unitprofit=$10,profit=$11  WHERE id = $1",
+        [id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit]);
+      console.log(result1);
+    });
+   
+   res.json(result.rows);
+} catch (error) {
+console.log(error)   
+}
+ })
 
 app.post('/addEmployee', async function (req, res) {
    
     let {pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = req.body;
-    amountout = buyingprice * bought;
-    stock = bought -sold;
-    unitprofit = sellingprice -buyingprice;
-    profit = sold * unitprofit;
+    amountout = calculateAmountOut(buyingprice, bought);
+    stock = calculateStock(bought, sold);
+    unitprofit = calculateUnitProfit(sellingprice, buyingprice);
+    profit = calculateTotalProfit(sold, unitprofit);
 
     // console.log(req.body);
     try {
@@ -83,10 +102,10 @@ app.post('/addEmployee', async function (req, res) {
  
     console.log(req.body)
    let {id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = req.body
-   amountout = buyingprice * bought;
-   stock = bought -sold;
-   unitprofit = sellingprice * sold;
-   profit = amountout - unitprofit;
+   amountout = calculateAmountOut(buyingprice, bought);
+   stock = calculateStock(bought, sold);
+   unitprofit = calculateUnitProfit(sellingprice, sold);
+   profit = calculateTotalProfit( amountout, unitprofit);
     try {
      const result =await db.query("UPDATE turnover SET pnumber=$2,pname=$3,buyingprice=$4,bought=$5,amountout=$6,sellingprice=$7,sold=$8,stock=$9,unitprofit=$10,profit=$11  WHERE id = $1",
      [id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit])
@@ -244,3 +263,21 @@ app.post('/addEmployee', async function (req, res) {
 
 
 app.listen(3001)
+
+
+
+function calculateAmountOut(buyingprice, bought){
+  return buyingprice * bought;
+}
+
+function calculateStock(bought, sold){
+  return bought - sold;
+}
+
+function calculateUnitProfit(sellingprice, buyingprice){
+  return sellingprice - buyingprice;
+}
+
+function calculateTotalProfit(sold, unitprofit){
+  return parseInt(sold * unitprofit);
+}
