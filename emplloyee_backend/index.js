@@ -171,4 +171,76 @@ app.post('/addEmployee', async function (req, res) {
    })
 
 
+
+
+
+   app.post('/addEmployee2', async function (req, res) {
+   
+    const {e_name,e_monthly_salary,e_yearly_salary,e_imgurl} = req.body
+    try {
+     const result =await db.query("INSERT INTO employee (e_name,e_monthly_salary,e_yearly_salary,e_imgurl) VALUES ($1,$2,$3,$4)",[e_name,e_monthly_salary,e_yearly_salary,e_imgurl]);
+     //console.log(result.rows)
+     res.json("success")
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.get('/employeeData2', async function (req, res) {
+   
+    try {
+     const result =await db.query("SELECT * FROM employee");
+     //console.log(result.rows)
+     res.json(result.rows)
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.post('/delete2', async function (req, res) {
+
+    console.log(req.body)
+   
+    try {
+     const result =await db.query("DELETE FROM employee WHERE id = $1",[req.body.id])
+     //console.log(result.rows)
+     res.json("success")
+
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+   app.post('/getUpdate2Data2', async function (req, res) {
+ 
+    console.log(req.body)
+   
+    try {
+     const result =await db.query("SELECT * FROM employee WHERE id = $1",[req.body.id])
+    //  console.log(result.rows[0])
+     res.json(result.rows[0])
+     
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+
+   app.post('/Update2', async function (req, res) {
+ 
+    console.log(req.body)
+   const {id,e_name,e_monthly_salary,e_yearly_salary} = req.body
+    try {
+     const result =await db.query("UPDATE employee SET e_name=$2, e_monthly_salary=$3, e_yearly_salary=$4  WHERE id = $1",
+     [id,e_name,e_monthly_salary,e_yearly_salary])
+    //  console.log(result.rows[0])
+    //  console.log(result.rows)
+     res.json("success")
+     
+ } catch (error) {
+  console.log(error)   
+ }
+   })
+
+
 app.listen(3001)

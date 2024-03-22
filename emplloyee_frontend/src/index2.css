@@ -1,0 +1,106 @@
+body {
+    font-family: sans-serif;
+    padding: 25px;
+    background-color: #e8b9e4;
+    text-align: enter;
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 2em;
+    color: #76696a;
+  }
+  .employeeList2{
+       width: 100vw;
+       display: flex;
+    flex-wrap: wrap;
+   
+  }
+  
+  .card {
+    border-radius: 25px;
+    position: relative;
+    padding: 25px 15px;
+    background-color: #3bbb4f;
+    margin: 50px ;
+    height: 250px;
+    box-shadow: 0 2px 5px #9a9292;
+    text-align: left;
+    width: 400px;
+  }
+  
+  .top {
+    border-radius: 25px 25px 0 0;  
+    height: 100px;
+    width: 100%;
+    background-color: #e35075;
+    position: absolute;
+    top: 0;
+    left: 0;
+   display: flex;
+  }
+  
+  .name {
+    font-size: 2em;
+    color: #2d3436;
+    display: flex;
+    flex: 1;
+    margin: 10% 20px 0;
+  }
+  
+  
+  .bottom {
+    margin-top: 120px;
+  }
+  
+  .info {
+    margin: 20px 0;
+    color: #1a7e76;
+  }
+  
+  
+  
+  /* body {
+    margin: 0;
+    font-family: -App2le-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .employeeData2 {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px solid;
+    align-items: center;
+   
+  }
+  .employeeData2 .employeeData21{
+    width: 300px;
+    height: 200px;
+    display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+    background-color: aqua;
+    border: 2px solid;
+    border-radius: 20px;
+  }
+  button{
+    background-color: transparent;
+    border: 2px solid;
+    width: 100px;
+    margin-left: 100px;
+    
+  } */
+  
+  
+  
+  
+  
+  
+  
+  
+  

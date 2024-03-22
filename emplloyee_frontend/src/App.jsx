@@ -7,7 +7,7 @@ import Aboutus from './components/Aboutus'
 import Product from './components/Product'
 import Contacts from './components/Contacts'
 import Turnoverreport from './components/Turnoverreport'
-import EmployeReport from './components/EmployeReport'
+// import EmployeReport from './components/EmployeReport'
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
     <Route path= "/Product" element={ <Product />} />
     <Route path= "/Contacts" element={ <Contacts />} />
     <Route path= "/Turnoverreport" element={<Turnoverreport />} />
-    <Route path= "/EmployeReport" element={<EmployeReport />} />
+    {/* <Route path= "/EmployeReport" element={<EmployeReport />} /> */}
     
     
 </Routes>
