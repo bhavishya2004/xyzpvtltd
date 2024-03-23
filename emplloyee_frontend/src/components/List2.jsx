@@ -51,7 +51,7 @@ const List2 = (props) => {
         {/* <p className="info">e_imgUrl : {props.imgurl}</p> */}
         <p className="info">e_Ysalary : {e_yearly_salary}</p>
         <button className="lb2"
-         conClick={handledelete2}>delete2</button>
+         onClick={handledelete2}>delete2</button>
         <button  className="lb2"
           onClick={() => {
             navigate(`/Update2/${id}`);

@@ -34,22 +34,15 @@ const Employee = () => {
         >
           Product
         </button>
-
+       
         <button
           onClick={() => {
-            navigate("/Turnoverreport");
+            navigate("/Report");
           }}
         >
-          Turnoverreport
+          Report
         </button>
-
-        <button
-          onClick={() => {
-            navigate("/EmployeReport");
-          }}
-        >
-         EmployeReport
-        </button>
+        
 
         <button
           onClick={() => {
@@ -60,13 +53,7 @@ const Employee = () => {
         </button>
 
 
-        <button
-          onClick={() => {
-            navigate("/EmployeeCard");
-          }}
-        >
-          EmployeeCard
-        </button>
+      
 
 
         <button onClick={updateAllData}>Update Records</button>

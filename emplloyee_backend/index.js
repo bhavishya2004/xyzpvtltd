@@ -263,6 +263,106 @@ app.post('/addEmployee', async function (req, res) {
    })
 
 
+
+   app.get('/updateAllData', async function (req, res) {
+    try {
+     const result = await db.query("SELECT * FROM turnover");
+     result.rows.forEach( async row => {
+        var {id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = row;
+        amountout = calculateAmountOut(buyingprice, bought);
+        stock = calculateStock(bought, sold);
+        unitprofit = calculateUnitProfit(sellingprice, buyingprice);
+        profit = calculateTotalProfit( sold, unitprofit);
+        const result1 = await db.query("UPDATE turnover SET pnumber=$2,pname=$3,buyingprice=$4,bought=$5,amountout=$6,sellingprice=$7,sold=$8,stock=$9,unitprofit=$10,profit=$11  WHERE id = $1",
+          [id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit]);
+        console.log(result1);
+      });
+     
+     res.json(result.rows);
+  } catch (error) {
+  console.log(error)   
+  }
+   })
+  
+  app.post('/addEmployee3', async function (req, res) {
+     
+      let {pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = req.body;
+      amountout = calculateAmountOut(buyingprice, bought);
+      stock = calculateStock(bought, sold);
+      unitprofit = calculateUnitProfit(sellingprice, buyingprice);
+      profit = calculateTotalProfit( sold, unitprofit);
+  
+      // console.log(req.body);
+      try {
+       const result =await db.query("INSERT INTO turnover (pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)", [pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit])
+       //console.log(result.rows)
+       res.json("success")
+   } catch (error) {
+    console.log(error)   
+   }
+     })
+  
+     app.get('/employeeData3', async function (req, res) {
+     
+      try {
+       const result =await db.query("SELECT * FROM turnover");
+       //console.log(result.rows)
+       res.json(result.rows)
+   } catch (error) {
+    console.log(error)   
+   }
+     })
+  
+     app.post('/delete3', async function (req, res) {
+  
+      console.log(req.body)
+     
+      try {
+       const result =await db.query("DELETE FROM turnover WHERE id = $1",[req.body.id])
+       //console.log(result.rows)
+       res.json("success")
+  
+   } catch (error) {
+    console.log(error)   
+   }
+     })
+  
+     app.post('/getUpdateData3', async function (req, res) {
+   
+      console.log(req.body)
+     
+      try {
+       const result =await db.query("SELECT * FROM turnover WHERE id = $1",[req.body.id])
+      //  console.log(result.rows[0])
+       res.json(result.rows[0])
+       
+   } catch (error) {
+    console.log(error)   
+   }
+     })
+  
+  
+     app.post('/Update3', async function (req, res) {
+   
+      console.log(req.body)
+     let {id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit} = req.body
+     amountout = calculateAmountOut(buyingprice, bought);
+        stock = calculateStock(bought, sold);
+        unitprofit = calculateUnitProfit(sellingprice, buyingprice);
+        profit = calculateTotalProfit( sold, unitprofit);
+      try {
+       const result =await db.query("UPDATE turnover SET pnumber=$2,pname=$3,buyingprice=$4,bought=$5,amountout=$6,sellingprice=$7,sold=$8,stock=$9,unitprofit=$10,profit=$11  WHERE id = $1",
+       [id,pnumber,pname,buyingprice,bought,amountout,sellingprice,sold,stock,unitprofit,profit])
+      //  console.log(result.rows[0])
+      //  console.log(result.rows)
+       res.json("success")
+       
+   } catch (error) {
+    console.log(error)   
+   }
+     })
+
+
 app.listen(3001)
 
 
