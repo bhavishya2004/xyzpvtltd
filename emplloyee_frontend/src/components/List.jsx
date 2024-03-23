@@ -31,8 +31,8 @@ const List = (props) => {
 
   return (
     <div className='employeeData'>
-         <div>{id}</div>
-          <div> {pnumber} </div>
+         <div id='id'>{id}</div>
+          <div id='pn'> {pnumber} </div>
           <div>{pname }</div>
           <div> {buyingprice} </div>
           <div> {bought} </div>

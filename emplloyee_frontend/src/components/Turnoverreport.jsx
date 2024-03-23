@@ -42,8 +42,8 @@ const Turnoverreport = () => {
       </center>
       <div className="employeeList">
         <div className="employeeData">
-          <div className="bg">id</div>
-          <div className="bg"> Product <p>number</p> </div>
+          <div id="id" className="bg">id</div>
+          <div id="pn" className="bg"> Product <p>number</p> </div>
           <div className="bg"> Product  <p>name </p></div>
           <div className="bg"> Buying <p>price</p> </div>
           <div className="bg"> Product <p>bought</p> </div>
